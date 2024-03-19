@@ -15,7 +15,7 @@ import { RolesModule } from './../libs/sco-nestjs-utilities/src/roles/roles.modu
 import { PopulateModule } from './../libs/sco-nestjs-utilities/src/populate/populate.module';
 
 export const JWT_CONTROLLER: boolean = false;
-
+ 
 @Module({
   imports: [
     LoggerModule,
