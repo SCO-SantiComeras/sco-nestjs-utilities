@@ -44,22 +44,18 @@ export const HTTP_ERROR_CONSTANTS = {
     EMAIL_ALREADY_EXIST: 'Email already registered',
     CREATE_USER_ERROR: 'Unnable to create user',
     UPDATE_USER_ERROR: 'Unnable to update user',
-    UNNABLE_DELETE_ADMIN: 'Unnable to delete admin',
-    UNNABLE_UPDATE_ADMIN: 'Unnable to update admin',
   },
   PERMISSIONS: {
     PERMISSION_NOT_FOUND: 'Permission not found',
     PERMISSION_ALREADY_EXIST: 'Permission already exist',
     CREATE_PERMISSION_ERROR: 'Unnable to create permission',
     UPDATE_PERMISSION_ERROR: 'Unnable to update permission',
-    UNNABLE_DELETE_PERMISSION: 'Unnable to delete permission',
   },
   ROLES: {
     ROLE_NOT_FOUND: 'Role not found',
     ROLE_ALREADY_EXIST: 'Role already exist',
     CREATE_ROLE_ERROR: 'Unnable to create role',
     UPDATE_ROLE_ERROR: 'Unnable to update role',
-    UNNABLE_ROLE_PERMISSION: 'Unnable to delete role',
   },
   AUTH: {
     INVALID_CREDENTIALS: 'Invalid credentials',
