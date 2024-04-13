@@ -8,7 +8,7 @@ import { Response } from 'express';
 @ApiTags('excel')
 export class ExcelController {
 
-  constructor(private excelService: ExcelService) {}
+  constructor(private readonly excelService: ExcelService) {}
 
   @Post('createFile')
   @ApiOperation({

@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEnum, IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsEnum, IsNotEmpty, IsObject, IsString } from "class-validator";
 import { WorkBook, utils } from "xlsx";
 import { ExcelExtensionEnum } from "../enum/excel-extension.enum";
 import { VALIDATION_ERROR_CONSTANTS } from "../../constants/validation-error-messages.constants";
@@ -7,8 +7,18 @@ import { VALIDATION_ERROR_CONSTANTS } from "../../constants/validation-error-mes
 export class ExcelDto {
 
     @ApiProperty()
+    @IsNotEmpty({ message: VALIDATION_ERROR_CONSTANTS.EXCEL.COLUMNS.NOT_EMPTY })
+    @IsArray({ message: VALIDATION_ERROR_CONSTANTS.EXCEL.COLUMNS.INVALID_VALUE })
+    columns: string[];
+
+    @ApiProperty()
+    @IsNotEmpty({ message: VALIDATION_ERROR_CONSTANTS.EXCEL.DATA.NOT_EMPTY })
+    @IsArray({ message: VALIDATION_ERROR_CONSTANTS.EXCEL.DATA.INVALID_VALUE })
+    data: string[][];
+
+    @ApiProperty()
     @IsNotEmpty({ message: VALIDATION_ERROR_CONSTANTS.EXCEL.WORKBOOK.NOT_EMPTY })
-    @IsString({ message: VALIDATION_ERROR_CONSTANTS.EXCEL.WORKBOOK.INVALID_VALUE })
+    @IsObject({ message: VALIDATION_ERROR_CONSTANTS.EXCEL.WORKBOOK.INVALID_VALUE })
     workbook: WorkBook;
 
     @ApiProperty()

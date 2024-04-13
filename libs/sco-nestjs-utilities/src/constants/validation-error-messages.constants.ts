@@ -36,6 +36,14 @@ export const VALIDATION_ERROR_CONSTANTS = {
         }
     },
     EXCEL: {
+        COLUMNS: {
+            NOT_EMPTY: 'Columns should be not empty',
+            INVALID_VALUE: 'Columns should be string[] value',
+        },
+        DATA: {
+            NOT_EMPTY: 'Data should be not empty',
+            INVALID_VALUE: 'Data should be string[][] value',
+        },
         WORKBOOK: {
             NOT_EMPTY: 'Workbook should be not empty',
             INVALID_VALUE: 'Workbook should be object WorkBook (xlsx) value',
@@ -159,6 +167,14 @@ export const VALIDATION_ERROR_CONSTANTS = {
         NAME: {
             NOT_EMPTY: 'Name should be not empty',
             INVALID_VALUE: 'Name should be string value',
+        },
+        CREATED_AT: {
+            NOT_EMPTY: 'Created at should be not empty',
+            INVALID_VALUE: 'Created at should be Date value',
+        },
+        UPDATED_AT: {
+            NOT_EMPTY: 'Updated at should be not empty',
+            INVALID_VALUE: 'Updated at should be Date value',
         },
         TYPE_OBJ: {
             NOT_EMPTY: 'TypeObj should be not empty',

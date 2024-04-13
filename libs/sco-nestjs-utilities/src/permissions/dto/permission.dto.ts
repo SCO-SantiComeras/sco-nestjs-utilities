@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, IsString, } from 'class-validator';
+import { IsDate, IsNotEmpty, IsOptional, IsString, } from 'class-validator';
 import { VALIDATION_ERROR_CONSTANTS } from '../../constants/validation-error-messages.constants';
+import { Type } from 'class-transformer';
 
 export class PermissionDto {
   @ApiPropertyOptional()
@@ -12,6 +13,18 @@ export class PermissionDto {
   @IsNotEmpty()
   @IsString({ message: VALIDATION_ERROR_CONSTANTS.PERMISSION.NAME.INVALID_VALUE })
   name: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @Type(() => Date)
+  @IsDate({ message: VALIDATION_ERROR_CONSTANTS.PERMISSION.CREATED_AT.INVALID_VALUE })
+  createdAt?: Date;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @Type(() => Date)
+  @IsDate({ message: VALIDATION_ERROR_CONSTANTS.PERMISSION.UPDATED_AT.INVALID_VALUE })
+  updatedAt?: Date;
 
   @ApiPropertyOptional()
   @IsOptional()

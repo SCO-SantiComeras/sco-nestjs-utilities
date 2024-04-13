@@ -2,8 +2,9 @@ import { ExcelRepository } from "./excel.repository";
 import { ExcelDto } from "./dto/excel.dto";
 import { Response } from 'express';
 import { HTTP_ERROR_CONSTANTS } from "../constants/http-error-messages.constants";
-import { HttpException, HttpStatus } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 
+@Injectable()
 export class ExcelService {
 
   constructor(private readonly excelRepository: ExcelRepository) {}
@@ -29,6 +30,8 @@ export class ExcelService {
       console.error(`[Excel createFile] ${HTTP_ERROR_CONSTANTS.EXCEL.EXCEL_INVALID_EXTENSION}`);
       throw new HttpException(HTTP_ERROR_CONSTANTS.EXCEL.EXCEL_INVALID_EXTENSION, HttpStatus.CONFLICT);
     }
+
+    this.excelRepository.setWorkSheet(excelDto);
 
     const xlsxFileCreated: any = await this.excelRepository.generateExcelFile(excelDto);
     if (!xlsxFileCreated) {

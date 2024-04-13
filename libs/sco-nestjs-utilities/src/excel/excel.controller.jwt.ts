@@ -9,7 +9,7 @@ import { AuthGuard } from "@nestjs/passport";
 @ApiTags('excel')
 export class ExcelControllerJwt {
 
-  constructor(private excelService: ExcelService) {}
+  constructor(private readonly excelService: ExcelService) {}
 
   @Post('createFile')
   @UseGuards(AuthGuard())
