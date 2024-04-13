@@ -142,7 +142,6 @@ export class AuthService {
   }
 
   async getUserEmail(res: Response, email: string): Promise<Response<IUser, Record<string, IUser>>> {
-    console.log(email)
     const existUser: IUser = await this.usersRepository.findUserByEmail(email);
     if (!existUser) {
       console.log(`[getUserEmail] User email '${email}' not found`);
