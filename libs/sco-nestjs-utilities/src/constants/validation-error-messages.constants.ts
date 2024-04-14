@@ -125,6 +125,14 @@ export const VALIDATION_ERROR_CONSTANTS = {
             NOT_EMPTY: 'Extension should be not empty',
             INVALID_VALUE: 'Extension should be object (any) value',
         },
+        CREATED_AT: {
+            NOT_EMPTY: 'Created at should be not empty',
+            INVALID_VALUE: 'Created at should be Date value',
+        },
+        UPDATED_AT: {
+            NOT_EMPTY: 'Updated at should be not empty',
+            INVALID_VALUE: 'Updated at should be Date value',
+        },
         TYPE_OBJ: {
             NOT_EMPTY: 'TypeObj should be not empty',
             INVALID_VALUE: 'TypeObj should be string value',
@@ -193,6 +201,14 @@ export const VALIDATION_ERROR_CONSTANTS = {
         PERMISSIONS: {
             NOT_EMPTY: 'Permissions should be not empty',
             INVALID_VALUE: 'Permissions should be an array of permissionDto[] value',
+        },
+        CREATED_AT: {
+            NOT_EMPTY: 'Created at should be not empty',
+            INVALID_VALUE: 'Created at should be Date value',
+        },
+        UPDATED_AT: {
+            NOT_EMPTY: 'Updated at should be not empty',
+            INVALID_VALUE: 'Updated at should be Date value',
         },
         TYPE_OBJ: {
             NOT_EMPTY: 'TypeObj should be not empty',

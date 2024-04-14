@@ -64,6 +64,18 @@ export class UserDto {
 
   @ApiPropertyOptional()
   @IsOptional()
+  @Type(() => Date)
+  @IsDate({ message: VALIDATION_ERROR_CONSTANTS.USERS.CREATED_AT.INVALID_VALUE })
+  createdAt?: Date;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @Type(() => Date)
+  @IsDate({ message: VALIDATION_ERROR_CONSTANTS.USERS.UPDATED_AT.INVALID_VALUE })
+  updatedAt?: Date;
+
+  @ApiPropertyOptional()
+  @IsOptional()
   @IsString({ message: VALIDATION_ERROR_CONSTANTS.USERS.TYPE_OBJ.INVALID_VALUE })
   typeObj?: string;
 }
