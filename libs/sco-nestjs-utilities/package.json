@@ -1,6 +1,6 @@
 {
   "name": "sco-nestjs-utilities",
-  "version": "9.1.13",
+  "version": "9.1.14",
   "author": "Santiago Comeras Oteo",
   "description": "SCO Nestjs Utilities",
   "main": "index.js",
