@@ -61,6 +61,10 @@ export class RolesControllerJwt {
     description: 'Added role successfully',
   })
   @ApiResponse({
+    status: 404,
+    description: 'Role permission not found',
+  })
+  @ApiResponse({
     status: 409,
     description: 'role name already exist',
   })
@@ -105,7 +109,7 @@ export class RolesControllerJwt {
   })
   @ApiResponse({
     status: 404,
-    description: 'Role not found',
+    description: 'Role not found,  Role permission not found',
   })
   @ApiResponse({
     status: 409,

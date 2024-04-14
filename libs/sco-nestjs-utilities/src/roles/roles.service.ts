@@ -7,6 +7,8 @@ import { WEBSOCKET_EVENTS } from '../websocket/constants/websocket.events';
 import { RolesRepository } from "./roles.repository";
 import { IRole } from "./interface/irole.interface";
 import { RoleDto } from "./dto/role.dto";
+import { IPermission } from "../permissions/interface/ipermission.interface";
+import { PermissionsRepository } from "../permissions/permissions.repository";
 
 @Injectable()
 export class RolesService {
@@ -15,6 +17,7 @@ export class RolesService {
         private readonly rolesRepository: RolesRepository,
         private readonly controllerService: ControllerService,
         private readonly websocketsService: WebsocketGateway,
+        private readonly permissionsRepository: PermissionsRepository,
     ) {}
 
     async fetchRoles(res: Response, query?: any): Promise<Response<IRole[], Record<string, IRole[]>>> {
@@ -28,6 +31,16 @@ export class RolesService {
         if (exitRoleName) {
             console.error('[addRole] Role already exist');
             throw new HttpException(HTTP_ERROR_CONSTANTS.ROLES.ROLE_ALREADY_EXIST, HttpStatus.CONFLICT);
+        }
+
+        if (role.permissions && role.permissions.length > 0) {
+            for (const permission of role.permissions) {
+                const existPermission: IPermission = await this.permissionsRepository.findPermissionByName(permission.name);
+                if (!existPermission) {
+                    console.error('[addRole] Permission not found');
+                    throw new HttpException(HTTP_ERROR_CONSTANTS.PERMISSIONS.PERMISSION_NOT_FOUND, HttpStatus.NOT_FOUND);
+                }
+            }
         }
 
         const createdRole: IRole = await this.rolesRepository.addRole(role);
@@ -52,6 +65,16 @@ export class RolesService {
             if (existNewName) {
                 console.log('[updateRole] Role already registered');
                 throw new HttpException(HTTP_ERROR_CONSTANTS.ROLES.ROLE_ALREADY_EXIST, HttpStatus.CONFLICT);
+            }
+        }
+
+        if (role.permissions && role.permissions.length > 0) {
+            for (const permission of role.permissions) {
+                const existPermission: IPermission = await this.permissionsRepository.findPermissionByName(permission.name);
+                if (!existPermission) {
+                    console.error('[updateRole] Permission not found');
+                    throw new HttpException(HTTP_ERROR_CONSTANTS.PERMISSIONS.PERMISSION_NOT_FOUND, HttpStatus.NOT_FOUND);
+                }
             }
         }
 
