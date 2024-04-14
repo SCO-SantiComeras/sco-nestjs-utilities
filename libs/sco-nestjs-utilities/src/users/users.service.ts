@@ -10,7 +10,8 @@ import { HTTP_ERROR_CONSTANTS } from '../constants/http-error-messages.constants
 import { WEBSOCKET_EVENTS } from '../websocket/constants/websocket.events';
 import { IUser } from './interface/iuser.interface';
 import { UserDto } from './dto/user.dto';
-import { ROLES_CONSTANTS } from "../roles/constants/roles.constants";
+import { RolesRepository } from "../roles/roles.repository";
+import { IRole } from "../roles/interface/irole.interface";
 
 @Injectable()
 export class UsersService {
@@ -21,10 +22,18 @@ export class UsersService {
         private readonly websocketsService: WebsocketGateway,
         private readonly bcryptService: BcryptService,
         @Inject('CONFIG_OPTIONS') private options: UsersConfig,
+        private readonly rolesRepository: RolesRepository,
     ) {}
 
     async fetchUsers(res: Response, query?: any): Promise<Response<IUser[], Record<string, IUser[]>>> {
         const filter = query && query.query ? await this.controllerService.getParamsFromSwaggerQuery(query.query) : query;
+        if (filter.role) {
+            const existRole: IRole = await this.rolesRepository.findRoleByName(filter.role);
+            if (existRole) {
+                filter.role = existRole;
+            }
+        }
+
         const users: IUser[] = await this.usersRepository.fetchUsers(filter);
         return res.status(200).json(users);
     }
@@ -42,7 +51,12 @@ export class UsersService {
             throw new HttpException(HTTP_ERROR_CONSTANTS.USERS.EMAIL_ALREADY_EXIST, HttpStatus.CONFLICT);
         }
 
-        /* user.role = user.role ? user.role : { name: ROLES_CONSTANTS.USER.NAME }; */
+        const existRole: IRole = await this.rolesRepository.findRoleByName(user.role.name);
+        if (!existRole) {
+            console.log('[addUser] Role not found');
+            throw new HttpException(HTTP_ERROR_CONSTANTS.ROLES.ROLE_NOT_FOUND, HttpStatus.NOT_FOUND);
+        }
+
         if (this.options.newUserActived) {
             user.active = user.active == false || user.active == true ? user.active : true;
         } else {
@@ -80,6 +94,12 @@ export class UsersService {
                 console.log('[updateUser] Email already registered');
                 throw new HttpException(HTTP_ERROR_CONSTANTS.USERS.EMAIL_ALREADY_EXIST, HttpStatus.CONFLICT);
             }
+        }
+
+        const existRole: IRole = await this.rolesRepository.findRoleByName(user.role.name);
+        if (!existRole) {
+            console.log('[updateUser] Role not found');
+            throw new HttpException(HTTP_ERROR_CONSTANTS.ROLES.ROLE_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
 
         let updatePassword: boolean = false;

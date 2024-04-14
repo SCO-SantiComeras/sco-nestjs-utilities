@@ -57,6 +57,10 @@ export class UsersController {
     description: 'Added user successfully',
   })
   @ApiResponse({
+    status: 404,
+    description: 'User role not found',
+  })
+  @ApiResponse({
     status: 409,
     description: 'User name already exist,  User email already registered',
   })
@@ -101,7 +105,7 @@ export class UsersController {
   })
   @ApiResponse({
     status: 404,
-    description: 'User not found',
+    description: 'User not found,  User role not found',
   })
   @ApiResponse({
     status: 409,
