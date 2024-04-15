@@ -20,3 +20,7 @@ http://scoapps.es:8000/doc
     - ADD Users role validation
     - ADD Roles permissions validation
     - ADD createdAt & updatedAt to user & role dto
+
+9.1.16:
+    - ADD createdAt & updatedAt properties to iUser, iRole, iPermission
+    - ADD createdAt & updatedAt to modelToDto functions in users, roles, permissions
