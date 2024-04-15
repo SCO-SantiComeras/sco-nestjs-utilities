@@ -10,5 +10,7 @@ export interface IUser {
   pwdRecoveryToken?: string;
   pwdRecoveryDate?: Date;
   extension?: any;
+  createdAt?: Date;
+  updatedAt?: Date;
   typeObj?: string;
 }

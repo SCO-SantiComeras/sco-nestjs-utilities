@@ -189,6 +189,9 @@ export class UsersRepository {
       role: roleDto,
       pwdRecoveryToken: user.pwdRecoveryToken,
       pwdRecoveryDate: user.pwdRecoveryDate,
+      extension: user.extension ? user.extension : {},
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
       typeObj: user.typeObj ? user.typeObj : MONGODB_CONSTANTS.USERS.MODEL, 
     }
 

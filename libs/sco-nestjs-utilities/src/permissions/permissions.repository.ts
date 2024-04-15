@@ -103,6 +103,8 @@ export class PermissionsRepository {
     const PermissionDto: PermissionDto = {
       _id: permission._id ? permission._id : undefined, 
       name: permission.name,
+      createdAt: permission.createdAt,
+      updatedAt: permission.updatedAt,
       typeObj: permission.typeObj ? permission.typeObj : MONGODB_CONSTANTS.PERMISSIONS.MODEL, 
     }
 

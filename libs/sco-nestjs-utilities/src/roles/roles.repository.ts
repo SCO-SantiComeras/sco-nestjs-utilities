@@ -123,6 +123,8 @@ export class RolesRepository {
       _id: role._id ? role._id : undefined, 
       name: role.name,
       permissions: permissionsDtos,
+      createdAt: role.createdAt,
+      updatedAt: role.updatedAt,
       typeObj: role.typeObj ? role.typeObj : MONGODB_CONSTANTS.ROLES.MODEL, 
     }
 
