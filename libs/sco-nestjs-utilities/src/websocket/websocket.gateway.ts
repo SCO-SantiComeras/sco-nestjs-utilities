@@ -30,10 +30,13 @@ export class WebsocketGateway implements OnGatewayInit, OnApplicationBootstrap {
   }
 
   async notifyWebsockets(wsEvent: string, verbose: boolean = false): Promise<boolean> {
-    if (!this.validateWebsocketEvent(wsEvent)) {
+    // SI las constantes del backend donde se consume la librería son distintas a las del objeto de la librería dara false
+    // Si creas un nuevo modulo que emite un nuevo evento de websocket desde el backend donde consumes la librería no se podra emitir el evento
+    // Necesita fixeo
+    /* if (!this.validateWebsocketEvent(wsEvent)) {
       console.log(`[notifyWebsockets] Event '${wsEvent}' is not a valid event`);
       return false;
-    }
+    } */
 
     if (!this.sendWebsocketNotification(wsEvent)) {
       console.log(`[notifyWebsockets] Event '${wsEvent}' unnable to send notification`);
