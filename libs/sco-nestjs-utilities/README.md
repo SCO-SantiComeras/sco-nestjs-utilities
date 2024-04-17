@@ -24,3 +24,6 @@ http://scoapps.es:8000/doc
 9.1.16:
     - ADD createdAt & updatedAt properties to iUser, iRole, iPermission
     - ADD createdAt & updatedAt to modelToDto functions in users, roles, permissions
+
+9.1.17:
+    - Fix Websocket external library websocket event notification
