@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsDate, IsNotEmpty, IsOptional, IsString, } from 'class-validator';
 import { VALIDATION_ERROR_CONSTANTS } from '../../constants/validation-error-messages.constants';
-import { PermissionDto } from '@app/sco-nestjs-utilities/permissions/dto/permission.dto';
+import { PermissionDto } from '../../permissions/dto/permission.dto';
 import { Type } from 'class-transformer';
 
 export class RoleDto {
