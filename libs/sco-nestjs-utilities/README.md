@@ -27,3 +27,6 @@ http://scoapps.es:8000/doc
 
 9.1.17:
     - Fix Websocket external library websocket event notification
+
+9.1.18:
+    - Fix Roledto import error of PermissionDto
