@@ -9,7 +9,7 @@ import { PermissionsController } from './permissions.controller';
 import { PermissionsRepository } from './permissions.repository';
 import { PermissionsService } from './permissions.service';
 import { IPermission } from './interface/ipermission.interface';
-import { permissionSchema } from './schema/permission.schema';
+import { PERMISSIONS_SCHEMA } from './schema/permission.schema';
 
 interface PermissionsConfigFactory {
   createPermissionsConfig(): Promise<PermissionsConfig> | PermissionsConfig;
@@ -40,7 +40,7 @@ export class PermissionsModule {
         {
           provide: 'MODEL',
           useFactory: (db: MongoDbService) =>
-            db.getConnection().model<IPermission>(MONGODB_CONSTANTS.PERMISSIONS.MODEL, permissionSchema, MONGODB_CONSTANTS.PERMISSIONS.TABLE),
+            db.getConnection().model<IPermission>(MONGODB_CONSTANTS.PERMISSIONS.MODEL, PERMISSIONS_SCHEMA, MONGODB_CONSTANTS.PERMISSIONS.TABLE),
           inject: [MongoDbService],
         },
         {
@@ -67,7 +67,7 @@ export class PermissionsModule {
         {
           provide: 'MODEL',
           useFactory: (db: MongoDbService) =>
-            db.getConnection().model<IPermission>(MONGODB_CONSTANTS.PERMISSIONS.MODEL, permissionSchema, MONGODB_CONSTANTS.PERMISSIONS.TABLE),
+            db.getConnection().model<IPermission>(MONGODB_CONSTANTS.PERMISSIONS.MODEL, PERMISSIONS_SCHEMA, MONGODB_CONSTANTS.PERMISSIONS.TABLE),
           inject: [MongoDbService],
         },
         ...this.createConfigProviders(options),

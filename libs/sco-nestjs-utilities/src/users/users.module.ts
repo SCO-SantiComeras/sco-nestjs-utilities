@@ -2,7 +2,7 @@ import { DynamicModule, Module, ModuleMetadata, Provider, Type } from '@nestjs/c
 import { PassportModule } from '@nestjs/passport';
 import { MongoDbService } from '../mongo-db/mongo-db.service';
 import { IUser } from './interface/iuser.interface';
-import { userSchema } from './schema/user.schema';
+import { USERS_SCHEMA } from './schema/user.schema';
 import { UsersController } from './users.controller';
 import { UsersRepository } from './users.repository';
 import { MONGODB_CONSTANTS } from '../mongo-db/mongo-db.constants';
@@ -42,7 +42,7 @@ export class UsersModule {
         {
           provide: 'MODEL',
           useFactory: (db: MongoDbService) =>
-            db.getConnection().model<IUser>(MONGODB_CONSTANTS.USERS.MODEL, userSchema, MONGODB_CONSTANTS.USERS.TABLE),
+            db.getConnection().model<IUser>(MONGODB_CONSTANTS.USERS.MODEL, USERS_SCHEMA, MONGODB_CONSTANTS.USERS.TABLE),
           inject: [MongoDbService],
         },
         {
@@ -70,7 +70,7 @@ export class UsersModule {
         {
           provide: 'MODEL',
           useFactory: (db: MongoDbService) =>
-            db.getConnection().model<IUser>(MONGODB_CONSTANTS.USERS.MODEL, userSchema, MONGODB_CONSTANTS.USERS.TABLE),
+            db.getConnection().model<IUser>(MONGODB_CONSTANTS.USERS.MODEL, USERS_SCHEMA, MONGODB_CONSTANTS.USERS.TABLE),
           inject: [MongoDbService],
         },
         ...this.createConfigProviders(options),

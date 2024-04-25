@@ -9,7 +9,7 @@ import { RolesController } from './roles.controller';
 import { RolesRepository } from './roles.repository';
 import { RolesService } from './roles.service';
 import { IRole } from './interface/irole.interface';
-import { roleSchema } from './schema/role.schema';
+import { ROLES_SCHEMA } from './schema/role.schema';
 import { PermissionsModule } from '../permissions/permissions.module';
 
 interface RolesConfigFactory {
@@ -42,7 +42,7 @@ export class RolesModule {
         {
           provide: 'MODEL',
           useFactory: (db: MongoDbService) =>
-            db.getConnection().model<IRole>(MONGODB_CONSTANTS.ROLES.MODEL, roleSchema, MONGODB_CONSTANTS.ROLES.TABLE),
+            db.getConnection().model<IRole>(MONGODB_CONSTANTS.ROLES.MODEL, ROLES_SCHEMA, MONGODB_CONSTANTS.ROLES.TABLE),
           inject: [MongoDbService],
         },
         {
@@ -70,7 +70,7 @@ export class RolesModule {
         {
           provide: 'MODEL',
           useFactory: (db: MongoDbService) =>
-            db.getConnection().model<IRole>(MONGODB_CONSTANTS.ROLES.MODEL, roleSchema, MONGODB_CONSTANTS.ROLES.TABLE),
+            db.getConnection().model<IRole>(MONGODB_CONSTANTS.ROLES.MODEL, ROLES_SCHEMA, MONGODB_CONSTANTS.ROLES.TABLE),
           inject: [MongoDbService],
         },
         ...this.createConfigProviders(options),

@@ -3,7 +3,7 @@ import { Schema, Types } from 'mongoose';
 import { IUser } from '../interface/iuser.interface';
 import { MONGODB_CONSTANTS } from '../../mongo-db/mongo-db.constants';
 
-export const userSchema = new Schema<IUser>(
+export const USERS_SCHEMA = new Schema<IUser>(
   {
     name: {
       type: String,
@@ -58,7 +58,7 @@ export const userSchema = new Schema<IUser>(
   },
 );
 
-userSchema.pre<IUser>('save', async function () {
+USERS_SCHEMA.pre<IUser>('save', async function () {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(this.password, salt);
   this.password = hash;

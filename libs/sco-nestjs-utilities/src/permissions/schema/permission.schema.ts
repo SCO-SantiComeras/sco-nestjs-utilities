@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 import { MONGODB_CONSTANTS } from '../../mongo-db/mongo-db.constants';
 import { IPermission } from '../interface/ipermission.interface';
 
-export const permissionSchema = new Schema<IPermission>(
+export const PERMISSIONS_SCHEMA = new Schema<IPermission>(
   {
     name: {
       type: String,

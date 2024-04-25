@@ -2,7 +2,7 @@ import { Schema, Types } from 'mongoose';
 import { MONGODB_CONSTANTS } from '../../mongo-db/mongo-db.constants';
 import { IRole } from '../interface/irole.interface';
 
-export const roleSchema = new Schema<IRole>(
+export const ROLES_SCHEMA = new Schema<IRole>(
   {
     name: {
       type: String,
