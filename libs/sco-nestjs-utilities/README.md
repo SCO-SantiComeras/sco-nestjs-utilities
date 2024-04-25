@@ -1,73 +1,200 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# SCO - Nestjs Utilities
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Nestjs Utilities es una librería de Node.js desarrollada para el framework Nestjs y publicada en NPM. 
+Esta librería proporciona una serie de funciones y servicios útiles para simplificar el desarrollo de aplicaciones web con Nestjs,.
+También, la librería provee de una sólida base de autentificación JWT con una gestión de usuarios.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Instalación
+<pre>
+npm i sco-nestjs-utilities
+</pre>
 
-## Description
+# Características principales
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Authmodule (Modulo de autentificación de usuarios)
+  - AuthRepository
+  - AuthService
+  - AuthController
+  - AuthConfig
+  - LoginDto
+  - TokenDto
+  - JwtPayload
+  - AuthStrategy
+- Constants
+  - HTTP_ERROR_CONSTANTS
+  - VALIDATION_ERROR_CONSTANTS
+- EmailerModule
+  - EmailerRepository
+  - EmailerService
+  - EmailerController
+  - EmailerControllerJwt
+  - EmailerConfig
+  - MessageDto
+- ExcelModule
+  - ExcelRepository
+  - ExcelService
+  - ExcelController
+  - ExcelControllerJwt
+  - ExcelConfig
+  - ExcelDto
+  - ExcelExtensionEnum
+- LoggerModule (Tratamiento de ficheros de logs)
+  - LoggerService
+- MicroserviceConnectionModule
+  - MicroserviceConnectionService
+  - MicroserviceConnectionConfig
+  - MicroserviceToBackend
+- Middlewares
+  - PublicMiddleware
+- MongoDbModule
+  - MongoDbService
+  - MongoDbConfig
+  - MONGODB_CONSTANTS
+- PaginationModule
+  - PaginationService
+  - PaginationDto
+  - PAGINATION_CONSTANTS
+- PermissionsModule (Permisos de los roles)
+  - PermissionsRepository
+  - PermissionsService
+  - PermissionsController
+  - PermissionsControllerJwt
+  - PermissionsConfig
+  - PERMISSIONS_CONSTANTS
+  - PermissionDto
+  - IPermission
+  - PERMISSIONS_SCHEMA
+- PopulateModule
+  - PopulateService
+  - PopualteConfig
+- RolesModule (Roles de los usuarios)
+  - RolesRepository
+  - RolesService
+  - RolesController
+  - RolesControllerJwt
+  - RolesConfig
+  - ROLES_CONSTANTS
+  - RoleDto
+  - IRole
+  - ROLES_SCHEMA
+- SftpModule
+  - SftpRepository
+  - SftpService
+  - SftpController
+  - SftpControllerJwt
+  - SftpConfig
+  - SftpRequestDto
+- SharedModule
+  - BcryptService
+  - ControllerService
+  - TranslateService
+    - TRANSLATE_CONSTANTS
+- UsersModule
+  - UsersRepository
+  - UsersService
+  - UsersController
+  - UsersControllerJwt
+  - UsersConfig
+  - USERS_CONSTANTS
+  - UserDto
+  - UpdateUserDto
+  - IUser
+  - USERS_SCHEMA
+- WebsocketModule
+  - WebsocketGateway
+  - WebsocketConfig
+  - WebsocketAdapter
+  - WEBSOCKET_EVENTS
 
-## Installation
+# Parámetros de configuración
+<pre>
+LoggerModule,
+PaginationModule,
+SharedModule,
+MongoDbModule.register({
+  ip: 'localhost',
+  port: 27017,
+  database: 'sco-nestjs-utilities'
+}),
+WebsocketModule.register({
+  port: 8070,
+  origin: 'http://localhost, http://localhost:8070',
+}),
+MicroserviceConnectionModule.register({
+  enabled: false,
+  host: '0.0.0.0',
+  port: 3006,
+}),
+AuthModule.register({
+  secret: 'qu3Ric0Est4ElCachop025!',
+  signOptions: {
+    expiresIn: '365d'
+  },
+  algorithm: 'HS256',
+  newUserActived: false,
+}),
+EmailerModule.register({
+  jwtController: true || false,
+  sending_Email_Address: 'youremail@email.com',
+  sending_Email_Password: 'yourPasswordEmail',
+  service: 'gmail' || 'hotmail',
+}),
+ExcelModule.register({
+  jwtController: true || false,
+}),
+SftpModule.register({
+  jwtController: true || false,
+  host: 'X.X.X.X',
+  port: 22,
+  username: 'user',
+  password: 'userPassword'
+}),
+PermissionsModule.register({
+  jwtController: true || false,
+}),
+RolesModule.register({
+  jwtController: true || false,
+}),
+UsersModule.register({
+  jwtController: true || false,
+  newUserActived: true,
+}),
 
-```bash
-$ npm install
-```
+/* Always Last Module On Load */
+PopulateModule.register({
+  populate: true,
+})
+</pre>
 
-## Running the app
+# Ejemplo
+- http://scoapps.es:8000/doc
+- Admin // Admin123456!
+- Public // Public123456!
 
-```bash
-# development
-$ npm run start
+# Changelog
+9.1.1/13:
+- Initial versión
 
-# watch mode
-$ npm run start:dev
+9.1.14:
+- Delete auth service useless console log
+- Delete http error constants not used
+- Refactor excel módule
+- Add createdAt & updatedAt to permission dto
 
-# production mode
-$ npm run start:prod
-```
+9.1.15:
+- ADD Users role validation
+- ADD Roles permissions validation
+- ADD createdAt & updatedAt to user & role dto
 
-## Test
+9.1.16:
+- ADD createdAt & updatedAt properties to iUser, iRole, iPermission
+- ADD createdAt & updatedAt to modelToDto functions in users, roles, permissions
 
-```bash
-# unit tests
-$ npm run test
+9.1.17:
+- Fix Websocket external library websocket event notification
 
-# e2e tests
-$ npm run test:e2e
+9.1.18:
+- Fix Roledto import error of PermissionDto
 
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+9.1.19:
+- UPD names of users, roles & permissions schemas constants
