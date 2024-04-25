@@ -4,6 +4,11 @@ Nestjs Utilities es una librería de Node.js desarrollada para el framework Nest
 Esta librería proporciona una serie de funciones y servicios útiles para simplificar el desarrollo de aplicaciones web con Nestjs,.
 También, la librería provee de una sólida base de autentificación JWT con una gestión de usuarios.
 
+# Instalación
+<pre>
+npm i sco-nestjs-utilities
+</pre>
+
 # Características principales
 
 - Authmodule (Modulo de autentificación de usuarios)
