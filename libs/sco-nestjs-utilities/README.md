@@ -198,3 +198,6 @@ PopulateModule.register({
 
 9.1.19:
 - UPD names of users, roles & permissions schemas constants
+
+9.1.20:
+- ADD Npm package README
