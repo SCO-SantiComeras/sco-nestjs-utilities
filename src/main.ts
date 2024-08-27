@@ -4,6 +4,7 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { WebsocketAdapter } from './../libs/sco-nestjs-utilities/src/websocket/adapter/websocket-adapter';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
 
@@ -13,6 +14,8 @@ async function bootstrap() {
       httpsOptions: undefined
     }
   );
+
+  const configService = app.get<ConfigService>(ConfigService);
 
   /* const configService = app.get<ConfigService>(ConfigService); */
 
@@ -63,12 +66,7 @@ async function bootstrap() {
     credentials: true,
   }); */
 
-  app.useWebSocketAdapter(
-    new WebsocketAdapter(app, {
-      port: 8070,
-      origin: 'http://localhost, http://localhost:8070',
-    })
-  );
+  app.useWebSocketAdapter(new WebsocketAdapter(app, configService));
 
   await app.listen(3005);
   if (swaggeer) console.log(`[bootstrap] Swagger started in url 'http://${'localhost'}:${3005}/${swaggerRoute}'`);
